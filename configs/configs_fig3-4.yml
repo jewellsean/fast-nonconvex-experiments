@@ -1,0 +1,8 @@
+lam : 1 # tuning value
+gam : 0.998 # exponential decay rate
+sigma : 0.15 # noise sd for fl process
+min_cal_conc : 0.0001
+number_simulations : 50 # number of simulations
+op_threshold : 21545 # run optimal partitioning algorithm up to this series length
+local_exp_directory : 'experiments/fig3-4/'
+local_fig_directory: 'figures/'

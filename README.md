@@ -4,12 +4,19 @@ This repository contains code to reproduce all experiments in Jewell, Hocking, F
 
 # Requires:
 
-Experiments require the following two packages 
+Experiments require the following R packages  
 
 - [FastLZeroSpikeInference](https://github.com/jewellsean/FastLZeroSpikeInference)
-- [OASIS](https://github.com/j-friedrich/OASIS)
+- tidyverse 
+- yaml 
+- magrittr
+- latex2exp
 
-where the R implementation of FastLZeroSpikeInference should be setup following [these instructions](https://github.com/jewellsean/FastLZeroSpikeInference) and OASIS should be setup inside a conda environment named ```aibs_py35```. To setup this environment with OASIS create the following environment file named ```aibs_py35.yml```
+where the R implementation of FastLZeroSpikeInference should be setup following [these instructions](https://github.com/jewellsean/FastLZeroSpikeInference) 
+
+And the python package 
+- [OASIS](https://github.com/j-friedrich/OASIS)
+should be setup inside a conda environment named ```aibs_py35```. To setup this environment with OASIS create the following environment file named ```aibs_py35.yml```
 
 ```
 name: aibs_py35
@@ -40,3 +47,4 @@ python3 setup.py install
 python3 setup.py clean --all
 ```
 
+To conduct timing experiments, the R package ```LZeroSpikeInference``` must be installed from [Github](https://github.com/jewellsean/LZeroSpikeInference).
