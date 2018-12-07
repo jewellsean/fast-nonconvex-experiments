@@ -3,10 +3,6 @@ python :
 data :
   dat_dir : 'spike_finder_data/' # spikefinder data directory
   fps : 100 # frames per second
-  data_set : 7 # dataset for the analysis
-  cell_i : 13 # cell indicator
-  train_subset_size : 10000 # size of training dataset
-  test_subset_size : 20000
 optimization :
   grid_size : 50 # number of fits for each of l0 and l1 fits
   l0 :
@@ -24,4 +20,8 @@ evaluation :
   vr_timescale : 0.1
   cor_downsample : 25 # fps
 output:
+  file_directory : 'experiments/fig5/'
+  local_directory : 'experiments/fig5/results'
   figure_directory : 'figures/'
+
+

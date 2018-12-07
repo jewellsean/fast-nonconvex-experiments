@@ -23,7 +23,7 @@ for (f in experiment_files_all) {
 
 
 if (is.null(experiment_files)) {
-  stop(paste0('This script analyzes results from a large scale experiment. Results, generated from fig6_experiments.R,
+  stop(paste0('This script analyzes results from a large scale experiment. Results, generated from fig5_experiments.R,
               must be saved in experiment_directory: ', experiment_directory))
 }
 
@@ -120,7 +120,7 @@ p2 <- out_df %>% mutate(dataset = as.factor(dataset)) %>%
 
 p <- grid.arrange(p1, p2, nrow = 1)
 
-ggsave(p, filename = paste0(configs$figure_directory, "fig8.pdf"), height = 5, width = 10)
+ggsave(p, filename = paste0(configs$figure_directory, "fig5_bottom.pdf"), height = 5, width = 10)
 
 
 

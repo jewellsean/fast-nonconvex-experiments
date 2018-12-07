@@ -1,6 +1,6 @@
-## Recreate Fig 3 and 4 of Jewell et al. (2018)
-## First need to run experiments in fig3-4_experiments.R through script
-## run_fig3-4_experiments_desktop.sh
+## Recreate Fig S2 and 3 of Jewell et al. (2018)
+## First need to run experiments in figS2-3_experiments.R through script
+## run_figS2-3_experiments_desktop.sh
 library(dplyr)
 library(ggplot2)
 library(magrittr)
@@ -21,7 +21,7 @@ local_fig_directory <- configs$local_fig_directory
 # read all experiment data
 df <- read_csvs_in_directory(local_exp_directory)
 
-## Figure 3: number of intervals in unconstrained and constrained problems 
+## Figure S2: number of intervals in unconstrained and constrained problems
 
 out_summary <- 
   df %>% filter(alg %in% c("fast-uncon", "fast-poscon")) %>%
@@ -49,11 +49,11 @@ p2 <- out_summary %>% ggplot(aes(x = n, y = mean_n_intervals, col = alg)) +
         panel.border = element_rect(size = 1,  colour = "black")) + 
   scale_color_manual(values=c("orange", "purple")) 
 
-ggsave(p2, filename = paste0(local_fig_directory, "fig3.pdf"), height = 6, width = 9)
+ggsave(p2, filename = paste0(local_fig_directory, "figS2.pdf"), height = 6, width = 9)
 
 
 
-## Figure 4: timing comparisons 
+## Figure 3: timing comparisons
 dfSummary <- df %>% group_by(n, alg, poisMean) %>%
   mutate(timed = timed) %>%
   summarize(meanCompute = mean(timed), seCompute = sd(timed) / n(), N = n())
@@ -82,4 +82,4 @@ ggplot(aes(x = n, y = meanCompute, color = alg)) +
     scale_color_manual(values=c("purple", "orange", "red","blue")) +
     facet_grid(. ~ poisMean, labeller = labeller(names))
 
-ggsave(p1, filename = paste0(local_fig_directory, "fig4.pdf"), height = 3, width = 9)
+ggsave(p1, filename = paste0(local_fig_directory, "fig3.pdf"), height = 3, width = 9)

@@ -1,17 +1,18 @@
-## Figure 7 of Jewell et al. (2018) arXiv:1802.07380
+## Figure S3 of Jewell et al. (2018) arXiv:1802.07380
 ## This figure compares the estimated spikes and calicum concentrations
 ## obtained through the unconstained and positive spike constrained 
-## solution of eqns. (2) and (3), respectively, from the paper. 
+## solution of eqns. (1.2) and (1.3), respectively, from the paper.
 ## We use the spike finder dataset to illustrate the differences. 
 ## 
 ## In this script, we
 ## 1. Read and process spike finder data 
-## 2. Estimate spikes and calcium concentrations corresponding to eqn. (2) and (3)
-## 3. Plot results from (2) and (3) around a region of interest 
+## 2. Estimate spikes and calcium concentrations corresponding to eqn. (1.2) and (1.3)
+## 3. Plot results from (1.2) and (1.3) around a region of interest
 ## 4. Save plot as pdf in specified location 
 library(tidyverse)
 library(latex2exp)
 library(FastLZeroSpikeInference)
+library(yaml)
 
 source("utils.R")
 
@@ -26,9 +27,11 @@ gam <- 0.98 # decay parameter
 lambda_p2 <- 3.6
 lambda_p3 <- 3.76
 
-## file i/o paramters 
-spikefinder_base_dir <- "/Users/jewellsean/Dropbox/research/fast_nonconvex_deconvolution_of_calcium_imaging_data/spike_finder_data/"
-fig_save_dir <- "~/Desktop/figures/"
+## file i/o paramters
+config_file <- "../configs/configs_figS3.yml"
+configs <- yaml.load_file(config_file)
+spikefinder_base_dir <- configs$dat_dir
+fig_save_dir <- configs$figure_dir
 
 ## plot parameters 
 wd <- 0.1 # rectangle box width 
@@ -48,7 +51,7 @@ fit_3 <- estimate_spikes(dat = data$calcium_d, gam = gam, lambda = lambda_p3,
                          constraint = F, estimate_calcium = T)
 
 
-## 3. Plot results from (2) and (3) around a region of interest and 
+## 3. Plot results from (1.2) and (1.3) around a region of interest and
 ## 4. Save plot as pdf in specified location 
 neg_spikes <- which(fit_3$estimated_calcium[fit_3$spikes] - gam * fit_3$estimated_calcium[fit_3$spikes - 1] < 0 )
 neg_spikes_magnitude <- fit_3$estimated_calcium[fit_3$spikes[neg_spikes]] -gam * fit_3$estimated_calcium[fit_3$spikes[neg_spikes - 1]]
@@ -62,7 +65,7 @@ ts <- neg_spike_time + 2 * c(-1, 1)
 times <- subset_is * (1 / fps)
 true_spike <- which(data$spikes > 0) * (1 / fps)
 
-pdf(paste0(fig_save_dir, "fig7.pdf"), height = 8, width = 16)
+pdf(paste0(fig_save_dir, "figS3.pdf"), height = 8, width = 16)
 par(mfrow = c(1, 2), mar = c(5, 3, 4, 2) + 0.1)
 plot_estimates(times, data$calcium_d, true_spike, fit_3$spikes, xlim = ts, xlab = "Time (s)")
 lines(times, fit_3$estimated_calcium, col = "blue")

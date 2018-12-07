@@ -13,7 +13,7 @@ df <- NULL
 experiment_files <- list.files(experiment_directory, pattern = ".csv")
 
 if (is.null(experiment_files)) {
-  stop(paste0('This script analyzes results from a large scale experiment. Results, generated from fig6_experiments.R,
+  stop(paste0('This script analyzes results from a large scale experiment. Results, generated from fig5_experiments.R,
               must be saved in experiment_directory: ', experiment_directory))
 }
 
@@ -41,7 +41,7 @@ p <- df %>% filter(constrained == FALSE) %>%
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), 
         panel.border = element_rect(size = 1,  colour = "black")) 
-filename <- paste0(configs$output$figure_directory, "fig6_compare_1-3_3-19.pdf")
+filename <- paste0(configs$output$figure_directory, "fig5_compare_1-3_3-18.pdf")
 ggsave(filename, p, height = 4, width = 8)
 
 
@@ -60,7 +60,7 @@ p <- df %>% filter(constrained == TRUE) %>%
         panel.border = element_rect(size = 1,  colour = "black")) 
 
 
-filename <- paste0(configs$output$figure_directory, "fig6_compare_1-2_3-19.pdf")
+filename <- paste0(configs$output$figure_directory, "fig5_compare_1-2_3-18.pdf")
 ggsave(filename, p, height = 4, width = 8)
 
 ## Compare the solution to (1.2) and (1.3)
@@ -81,5 +81,5 @@ p <- df_compare %>%
         panel.grid.minor = element_blank(), 
         panel.border = element_rect(size = 1,  colour = "black")) 
 
-filename <- paste0(configs$output$figure_directory, "fig6_compare_1-2_1-3.pdf")
+filename <- paste0(configs$output$figure_directory, "fig5_compare_1-2_1-3.pdf")
 ggsave(filename, p, height = 4, width = 8)

@@ -17,7 +17,7 @@ source("utils/full_path.R")
 source("utils/oasis_utils.R")
 
 # configs
-config_file <- "../configs/configs_fig5.yml"
+config_file <- "../configs/configs_fig4.yml"
 configs <- read_yaml(config_file)
 
 # data parameters

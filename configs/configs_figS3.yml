@@ -1,0 +1,2 @@
+dat_dir : 'spike_finder_data/' # spikefinder data directory
+figure_dir : 'figures/'
